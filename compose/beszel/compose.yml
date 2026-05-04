@@ -1,0 +1,19 @@
+services:
+  beszel:
+    image: henrygd/beszel
+    container_name: beszel
+    restart: unless-stopped
+    # Comment out ports section if using a reverse proxy.
+    ports:
+     - 8090:8090
+    volumes:
+      - data:/beszel_data
+volumes:
+  data:
+    driver: local
+
+# Uncomment this section if using a reverse proxy.
+# networks:
+#   default:
+#     external: true
+#     name: npm
