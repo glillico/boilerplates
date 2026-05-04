@@ -1,0 +1,13 @@
+domain.name.com:53 {
+    file /zones/db.domain.name.com
+    reload 60s
+    log
+    errors
+}
+
+100.168.192.in-addr.arpa:53 {
+    file /zones/db.192.168.100
+    reload 60s
+    log
+    errors
+}
