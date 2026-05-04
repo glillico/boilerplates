@@ -1,0 +1,15 @@
+services:
+  netbird:
+    image: netbirdio/netbird:0.36.3
+    container_name: netbird
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NB_SETUP_KEY=PUT_YOUR_KEYE_HERE
+    volumes:
+      - data:/etc/netbird
+    restart: unless-stopped
+
+volumes:
+  data:
+    driver: local
