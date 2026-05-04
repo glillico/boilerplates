@@ -1,0 +1,37 @@
+services:
+  dozzle:
+    image: amir20/dozzle:v8.13.7
+    container_name: dozzle
+    environment:
+      - DOZZLE_AUTH_PROVIDER=simple
+      # Uncomment the below line if running a remote dozzle agent.
+      # - DOZZLE_REMOTE_AGENT=SERVER1:7007,SERVER2:7007
+    secrets:
+      - source: users
+        target: /data/users.yml
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dozzle:/data
+    # Comment out ports section if using a reverse proxy.
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    healthcheck:
+      # The URL is relative to the container, not the host
+      test: ['CMD', '/beszel', 'health', '--url', 'http://localhost:8090']
+      start_period: 5s # Check 5 seconds after the container starts
+      interval: 120s # Then check every 120 seconds after that
+
+secrets:
+  users:
+    file: users.yml
+
+volumes:
+  dozzle:
+    driver: local
+
+# Uncomment this if using a reverse proxy.
+# networks:
+#   default:
+#     external: true
+#     name: npm
