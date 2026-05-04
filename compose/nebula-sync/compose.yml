@@ -1,0 +1,29 @@
+services:
+  nebula-sync:
+    image: ghcr.io/lovelaze/nebula-sync:v0.6.0
+    container_name: nebula-sync
+    environment:
+    - PRIMARY=http://pihole|PASSWORD
+    - REPLICAS=http://pihole2|PASSWORD
+    - FULL_SYNC=false
+    - RUN_GRAVITY=false
+    # Runs every 5 minutes.
+    - CRON=*/5 * * * *
+    - CLIENT_SKIP_TLS_VERIFICATION=true
+    - TZ=Eurpoe/London
+    - SYNC_CONFIG_DNS=true
+    - SYNC_CONFIG_DHCP=false
+    - SYNC_CONFIG_NTP=false
+    - SYNC_CONFIG_RESOLVER=false
+    - SYNC_CONFIG_DATABASE=false
+    - SYNC_CONFIG_MISC=false
+    - SYNC_CONFIG_DEBUG=false
+    - SYNC_GRAVITY_DHCP_LEASES=false
+    - SYNC_GRAVITY_GROUP=false
+    - SYNC_GRAVITY_AD_LIST=true
+    - SYNC_GRAVITY_AD_LIST_BY_GROUP=true
+    - SYNC_GRAVITY_DOMAIN_LIST=true
+    - SYNC_GRAVITY_DOMAIN_LIST_BY_GROUP=true
+    - SYNC_GRAVITY_CLIENT=false
+    - SYNC_GRAVITY_CLIENT_BY_GROUP=false
+    restart: unless-stopped
