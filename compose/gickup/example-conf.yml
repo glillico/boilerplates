@@ -1,0 +1,15 @@
+source:
+  github:
+    - token: <github token>
+      user: <user>
+      url: www.github.com
+      username: <username>
+      starred: true
+
+destination:
+  local:
+    - path: /<destination path>
+      structured: true
+
+# Uncomment the below to run every day at 03:40AM
+# cron: 40 03 * * *

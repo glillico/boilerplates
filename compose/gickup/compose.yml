@@ -1,0 +1,14 @@
+services:
+  server:
+    image: buddyspencer/gickup:latest
+    container_name: gickup
+    volumes:
+      - data:/backup
+      - ./conf.yml:/gickup/conf.yml
+    command: ["/gickup/conf.yml"]
+    environment:
+      - TZ=Europe/London
+
+volumes:
+  data:
+    driver: local
