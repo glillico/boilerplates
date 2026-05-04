@@ -1,0 +1,18 @@
+zone "." {
+    type primary;
+    file "/etc/bind/db.empty";
+};
+
+zone "DOMAIN.NAME.COM" IN {
+    type primary;
+    file "/etc/bind/db.DOMAIN.NAME.COM";
+    notify explicit;
+    also-notify { 192.168.100.10; };
+}; 
+
+zone "100.168.192.in-addr.arpa" IN {
+    type primary;
+    file "/etc/bind/db.192.168.100";
+    notify explicit;
+    also-notify { 192.168.100.10; };
+};

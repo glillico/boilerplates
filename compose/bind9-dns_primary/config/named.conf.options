@@ -1,0 +1,13 @@
+acl internal {
+  localhost;
+  localnets;
+  192.168.100.0/22;
+};
+
+options {
+  directory "/var/cache/bind";
+  recursion no;
+  allow-transfer { 192.168.100.10; };
+  allow-query { internal; };
+  allow-recursion { internal; };
+};

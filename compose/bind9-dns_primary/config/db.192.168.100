@@ -1,0 +1,21 @@
+$TTL 30m
+
+@           IN      SOA     ns1.DOMAIN.NAME.COM admin.DOMAIN.NAME.COM (
+                            2025120203  ; serial number
+                            3600        ; refresh period
+                            600         ; retry period
+                            604800      ; expire time
+                            1800        ; negative TTL
+                            )
+; Name servers for the domain
+            IN      NS              ns1.DOMAIN.NAME.COM.
+            IN      NS              ns2.DOMAIN.NAME.COM.
+
+; Main services
+1           IN      PTR             ns1.DOMAIN.NAME.COM.
+2           IN      PTR             ns2.DOMAIN.NAME.COM.
+3           IN      PTR             mx1.DOMAIN.NAME.COM.
+4           IN      PTR             mx2.DOMAIN.NAME.COM.
+10          IN      PTR             prod1.DOMAIN.NAME.COM.
+11          IN      PTR             prod2.DOMAIN.NAME.COM.
+12          IN      PTR             prod3.DOMAIN.NAME.COM.

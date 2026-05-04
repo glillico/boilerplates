@@ -1,0 +1,16 @@
+services:
+  bind9:
+    container_name: bind9-primary
+    image: ubuntu/bind9:9.20-25.04_edge
+    environment:
+      - BIND9_USER=bind
+      - TZ=Europe/London
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    volumes:
+      - ./config/named.conf.local:/etc/bind/named.conf.local
+      - ./config/named.conf.options:/etc/bind/named.conf.options
+      - ./config/db.DOMAIN.NAME.COM:/etc/bind/db.DOMAIN.NAME.COM
+      - ./config/db.192.168.100:/etc/bind/db.192.168.100
+    restart: unless-stopped
