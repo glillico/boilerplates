@@ -1,0 +1,17 @@
+services:
+  dockhand:
+    image: fnsys/dockhand:latest
+    container_name: dockhand
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      TZ: "Europe/London"
+      HOST_DATA_DIR: "/var/lib/docker/volumes/dockhand_data/_data"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - data:/app/data
+
+volumes:
+  data:
+    driver: local
