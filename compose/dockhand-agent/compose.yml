@@ -1,0 +1,13 @@
+services:
+  hawser:
+    container_name: dockhand-agent
+    image: ghcr.io/finsys/hawser:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/dockhand:/opt/dockhand
+    environment:
+      - STACKS_DIR=/opt/dockhand
+      - TOKEN=${TOKEN}
+    ports:
+      - 2376:2376
