@@ -1,0 +1,30 @@
+services:
+  arcane:
+    image: ghcr.io/getarcaneapp/manager:latest
+    container_name: arcane
+    # Comment out ports section if using a reverse proxy.
+    ports:
+      - '3552:3552'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - data:/app/data
+      - ./projects:/app/data/projects
+      - ./backups:/backups
+    environment:
+      - APP_URL=https://arcane.MY.DOMAIN.COM
+      - PUID=1000
+      - PGID=1000
+      - ENCRYPTION_KEY=${ARCANE_ENCRYPTION_KEY}
+      - JWT_SECRET=${ARCANE_JWT_SECRET}
+      - TZ= Europe/London
+    restart: unless-stopped
+
+volumes:
+  data:
+
+# Uncomment this section if using a reverse proxy.
+# networks:
+#   default:
+#     external: true
+#     name: npm
+
